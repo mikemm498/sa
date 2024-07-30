@@ -1,0 +1,35 @@
+import matplotlib.pyplot as plt
+
+hours = [10,9,2,15,10,16,11,16]
+score = [95,80,10,50,45,98,38,93]
+
+# Plotting the line chart
+plt.plot(hours, score, marker='*', color='red', linestyle='-.')
+
+# Adding labels and title
+plt.xlabel('Number of Hours Studied')
+plt.ylabel('Score in Final Exam')
+plt.title('Effect of Hours Studied on Exam Score')
+
+# Displaying the plot
+plt.grid(True)
+plt.show()
+
+
+
+
+from collections import Counter
+import matplotlib.pyplot as plt
+
+grades = [70, 72, 75, 98, 96, 94, 98, 86, 46, 48, 87, 89, 90, 100, 100, 92, 78, 71, 81, 82, 85]
+# Bucket grades by decile but put 100 in with the 90s
+histogram = Counter(min(grade // 10 * 10, 90) for grade in grades)
+plt.bar([x + 5 for x in histogram.keys()],
+        histogram.values(),
+        10,
+        edgecolor=(0, 0, 0))
+plt.xticks([10 * i for i in range(11)])
+plt.xlabel("Decile")
+plt.ylabel("# of Students in each category")
+plt.title("Distribution of IA Grades")
+plt.show()

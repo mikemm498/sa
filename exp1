@@ -18,18 +18,22 @@ plt.show()
 
 
 
-from collections import Counter
+import pandas as pd
 import matplotlib.pyplot as plt
+from collections import Counter
 
-grades = [70, 72, 75, 98, 96, 94, 98, 86, 46, 48, 87, 89, 90, 100, 100, 92, 78, 71, 81, 82, 85]
-# Bucket grades by decile but put 100 in with the 90s
-histogram = Counter(min(grade // 10 * 10, 90) for grade in grades)
-plt.bar([x + 5 for x in histogram.keys()],
-        histogram.values(),
-        10,
-        edgecolor=(0, 0, 0))
-plt.xticks([10 * i for i in range(11)])
-plt.xlabel("Decile")
-plt.ylabel("# of Students in each category")
-plt.title("Distribution of IA Grades")
+# Load the dataset
+mtcars = pd.read_csv(r"mtcars.csv")
+
+# Bucket mpg by decile, but put 100 in with the 90s
+histogram = Counter(min(mpg // 10 * 10, 90) for mpg in mtcars['mpg'])
+
+# Plot histogram
+plt.bar([x + 5 for x in histogram.keys()], histogram.values(), width=10, edgecolor='black')
+
+# Give each bar a width of 10 and black edges for each bar
+plt.xticks([10 * i for i in range(6)])
+plt.xlabel('Miles per gallon(mpg)')
+plt.ylabel('Frequency')
+plt.title('Histogram of Miles per gallon (mpg)')
 plt.show()
